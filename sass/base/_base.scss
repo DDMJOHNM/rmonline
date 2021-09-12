@@ -1,0 +1,21 @@
+
+/* reset */
+*, *::after, *::before{
+    margin:0;
+    padding: 0;
+    box-sizing: border-inherit; 
+    /* borrder not apart of width and height */
+}
+
+html{
+    font-size: 62.5%;
+    /* 10(what we want)/16(default) allows zoom in and  */
+    /* 1rem = 1px = root font-size 1/10 */
+    /*rem not below ie9*/
+}
+
+body{
+   box-sizing:"border-box";
+  
+ 
+}
