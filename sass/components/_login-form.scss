@@ -2,15 +2,64 @@
 
 .login-form {
 
+    font-size: $default-font-size;
+    margin: 0 auto;
+    border:1px solid $color-grey-dark-2;
+    padding:1rem;
+    width:40rem;
+    border-radius: 5px;
+    box-shadow: 1px 5px 5px rgba($color-black,.1);
+    transform:all 3s;
+    
+    &__group{
+        padding: 1rem;
+    }
+
     &__label{
-        color:$color-secondary-light;
+        color:$color-primary-light;
+        width:10rem;
+        display: inline-block;
+    }
+
+    &__email{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        width:20rem;
+        border-radius: 5px;
+    }
+
+    &__password{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
     }
     
     &__heading{
-        color:$color-secondary-dark;
+        color:$color-primary-light;
+        font-size: 2rem;
+        text-align: center;
     }
 
     &__submit{
-        color:red
+        color:$color-white;
+        background-color: $color-primary-light;       
+        padding: .5rem 1rem .5rem 1rem;
+        border-radius: 5px;
+        border: none;      
+        display: block;   
+        margin: 0 auto;
+        transition: all .2s;
+
+        &:hover{
+            background-color: rgba($color-black,.1);
+            color: $color-black;
+            transform:translate scale(2);
+            box-shadow: 1px 5px 5px rgba($color-black,.1);
+          
+        }
+
     }
+
+   
 }
