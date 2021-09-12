@@ -1,0 +1,16 @@
+@import '../abstracts/variables';
+
+.login-form {
+
+    &__label{
+        color:$color-secondary-light;
+    }
+    
+    &__heading{
+        color:$color-secondary-dark;
+    }
+
+    &__submit{
+        color:red
+    }
+}

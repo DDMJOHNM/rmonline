@@ -69,6 +69,15 @@ body {
 .u-margin-top-huge {
   margin-top: 10rem; }
 
+.login-form__label {
+  color: #ffb900; }
+
+.login-form__heading {
+  color: #ff7730; }
+
+.login-form__submit {
+  color: red; }
+
 .row {
   max-width: 114rem;
   margin: 0 auto; }
