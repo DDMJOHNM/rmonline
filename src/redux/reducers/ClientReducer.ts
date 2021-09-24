@@ -28,9 +28,11 @@ export const ClientSlice = createSlice({//async thunk
         getClients:state => {            
              state.clients=[
                  {id:0,firstName:"John", lastName:"Mason",streetAddress:"1/31 Pakira Road",city:"Auckland",country:"New Zealand", status:1},
-                 {id:1,firstName:"John", lastName:"Mason",streetAddress:"1/31 Pakira Road",city:"Auckland",country:"New Zealand", status:1},
-                 {id:2,firstName:"John", lastName:"Mason",streetAddress:"1/31 Pakira Road",city:"Auckland",country:"New Zealand", status:1}
-             ];                                     
+                 {id:1,firstName:"Rachael", lastName:"Mason",streetAddress:"1/31 Pakira Road",city:"Auckland",country:"New Zealand", status:1},
+                 {id:2,firstName:"Rosie", lastName:"Mason",streetAddress:"1/31 Pakira Road",city:"Auckland",country:"New Zealand", status:1},
+                 {id:3,firstName:"Morepork", lastName:"Mason",streetAddress:"1/31 Pakira Road",city:"Auckland",country:"New Zealand", status:1},
+                 {id:4,firstName:"Squitidichty", lastName:"Mason",streetAddress:"1/31 Pakira Road",city:"Auckland",country:"New Zealand", status:1}      
+                ];                                     
         }  
     }
 }) 

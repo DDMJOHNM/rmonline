@@ -45,16 +45,16 @@ const ClientList  = (props:Props)=>{
   },[])
 
   return <div className="App">
-    <h1>Clients</h1>   
+       
     <table className="client-list">
       <thead>
       <tr>
-        <th>FirstName</th>
-        <th>LastName</th>
-        <th>Street Address</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Status</th>
+        <th className="client-list__th">FirstName</th>
+        <th className="client-list__th">LastName</th>
+        <th className="client-list__th">Street Address</th>
+        <th className="client-list__th">City</th>
+        <th className="client-list__th">Country</th>
+        <th className="client-list__th">Status</th>
       </tr>
      </thead>
      <tbody>
@@ -77,10 +77,10 @@ const ClientList  = (props:Props)=>{
 
 export default connector(ClientList);
 
-
-//TODO: Add REDUX and JEST
-//TODO: Add Mock Data 
-//TODO: Add PropsFromRedux 
+//TODO: 
+//Routing
+//JEST
+//CSS grid 
 
 //Exposes Helper Type Connected Props
 //it can extract types of mapStateToProps and mapDispatchToProps from its first function

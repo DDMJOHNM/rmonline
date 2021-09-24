@@ -7,7 +7,7 @@ import ClientList from '../Clients/Clients';
 const App: React.FC = ()=>{
  
   return <div className="App">
-    <LoginForm />
+    {/* <LoginForm /> */}
     <ClientList clients={[]}/>
   </div>;
 } 
