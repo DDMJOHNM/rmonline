@@ -26,6 +26,7 @@
         height:3rem;
         width:20rem;
         border-radius: 5px;
+        padding:0 5px 0 5px;
     }
 
     &__password{
@@ -33,12 +34,14 @@
         height:3rem;
         border-radius: 5px;
         width:20rem;
+        padding:0 5px 0 5px;
     }
     
     &__heading{
         color:$color-primary-light;
         font-size: 2rem;
         text-align: center;
+          
     }
 
     &__submit{

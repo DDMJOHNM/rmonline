@@ -88,12 +88,14 @@ body {
     border: 1px solid #999;
     height: 3rem;
     width: 20rem;
-    border-radius: 5px; }
+    border-radius: 5px;
+    padding: 0 5px 0 5px; }
   .login-form__password {
     border: 1px solid #999;
     height: 3rem;
     border-radius: 5px;
-    width: 20rem; }
+    width: 20rem;
+    padding: 0 5px 0 5px; }
   .login-form__heading {
     color: #28b485;
     font-size: 2rem;
