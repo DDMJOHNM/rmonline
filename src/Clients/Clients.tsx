@@ -1,9 +1,8 @@
 import React,{useEffect} from 'react';
 import {connect,ConnectedProps} from 'react-redux';
 import { RootState } from '../redux/store';
-import {ClientSlice} from '../redux/reducers/ClientReducer';
 import {getClients} from '../redux/reducers/ClientReducer';
-import { useAppSelector, useAppDispatch } from '../redux/hooks';
+import { useAppDispatch } from '../redux/hooks';
 
 
 
