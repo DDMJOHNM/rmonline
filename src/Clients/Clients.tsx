@@ -1,19 +1,16 @@
 import React,{useEffect} from 'react';
 import {connect,ConnectedProps} from 'react-redux';
 import { RootState } from '../redux/store';
-import {getClients} from '../redux/reducers/ClientReducer';
+import {GetClients} from '../redux/reducers/ClientReducer';
 import { useAppDispatch } from '../redux/hooks';
-
-
 
 const mapState = (state: RootState) => ({
   practise: state.practise,
 })
 
 const mapDispatch = {
-  getClients: () => ({ type: 'client/getClients' }),
+  GetClients: () => ({ type: 'client/getClients' }),
 }
-
 
 const connector = connect(mapState, mapDispatch)
 
@@ -33,14 +30,12 @@ interface Props extends PropsFromRedux {
   clients : Array<Client>
 }
 
-
-
-const ClientList  = (props:Props)=>{
+const Clients  = (props:Props)=>{
 
   const dispatch = useAppDispatch();
 
   useEffect(()=>{
-    dispatch(getClients())
+    dispatch(GetClients())
   },[])
 
   return <div className="App">
@@ -74,10 +69,9 @@ const ClientList  = (props:Props)=>{
   </div>;
 } 
 
-export default connector(ClientList);
+export default connector(Clients);
 
 //TODO: 
-//Routing
 //JEST
 //CSS grid 
 
