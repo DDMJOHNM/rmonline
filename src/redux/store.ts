@@ -1,10 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import clientReducer from './reducers/ClientReducer'; 
+import loginReducer from './reducers/LoginReducer';
 
 export const store = configureStore({
     reducer:{
-       practise:clientReducer
-    }
+       practise:clientReducer,
+       login:loginReducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({      
+      serializableCheck: false,
+    }),
 }) 
 
 //pre typed versions of useDispatch and useSelector

@@ -9,13 +9,13 @@ const App: React.FC = ()=>{
  
   return <div className="App">
       <BrowserRouter>
-          <nav>
+          {/* <nav>
               <Link to="dashboard">Dashboard</Link>
               <Link to="clients">Clients</Link>
               <Link to="appointments">Appointments</Link>
               <Link to="invoices">Invoices</Link>
               <Link to="logout">Logout</Link>
-          </nav>
+          </nav> */}
          <Routes>
              <Route path="/login" element ={<LoginForm />} />
              <Route path="/clients" element ={<Clients clients={[]} />} />

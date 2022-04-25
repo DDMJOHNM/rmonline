@@ -1,33 +1,74 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import {connect,ConnectedProps, useSelector} from 'react-redux';
+import { RootState } from '../redux/store';
+import {Login} from '../redux/reducers/LoginReducer';
+import { useAppDispatch } from '../redux/hooks';
+import { BrowserRouter, BrowserRouter as Router, Route, useNavigate} from "react-router-dom";
+
+
+const mapState = (state: RootState) => ({
+    Login: state.login,
+  })
+  
+  const mapDispatch = {
+    GetClients: () => ({ type: 'client/getClients' }),
+  }
+  
 
 interface User {
     email? :string;
     password? :string;
 }
 
-const LoginForm : React.FC<User> = () => {
+interface LoginState{
+    login: string|undefined;
+    loading: boolean;
+    loggedin: boolean;
+    token: string|undefined;
+    error:string|undefined;
+
+}
+
+const connector = connect(mapState, mapDispatch);
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+interface Props extends PropsFromRedux {
+    login? : LoginState  
+}
+
+const LoginForm  = (props:Props) => {
 
     const [user, setUser] = React.useState<User | null>(null);   
-    
+    const dispatch = useAppDispatch();    
     const onChange = (e:React.FormEvent<HTMLInputElement>):void=>{
         setUser({[e.currentTarget.name]:e.currentTarget.value})
-    }
+    }           
 
+    const loading : boolean | undefined = props.Login.login.loading;
+    const loggedin : boolean | undefined = props.Login.login.loggedin
+    let navigate = useNavigate();
+
+    if(loading) return <p>Loading</p>;
+
+    if (loggedin) {
+        navigate("/clients");
+    }
+ 
     return (
+        
     <form className="login-form" onSubmit={
         (e:React.SyntheticEvent)=>{
             e.preventDefault();
             const target = e.target as typeof e.target &{
                 email:{value:string}
                 password:{value:string}                
-            }; 
-            //todo: ajax call or dispatch here 
-            //todo: snack bar and ajax call loader
-            console.log(target.email.value,target.password.value);
-
-        }
+            };             
+          dispatch(Login({email:target.email.value,password:target.password.value}));  
+       }
     }>
         <h1 className="login-form__heading">Rachael Mason Online Login</h1>
+        {props.Login.login.loggedin === true ? "true" :"false"} 
         <div className="login-form__group">
             <label htmlFor="username" className="login-form__label">Email</label>
             <input 
@@ -49,8 +90,15 @@ const LoginForm : React.FC<User> = () => {
                 />
         </div>   
         <input type="submit" className="login-form__submit" value="Login" />    
-    </form>
-    );
-}
+    </form> );
 
-export default LoginForm;
+}
+  
+export default connector(LoginForm);
+
+
+
+//Replace logged in state with persistant cookie 
+//Login spinner
+//Return login error from backend aand implement snack bar
+//Navigation menu and logout

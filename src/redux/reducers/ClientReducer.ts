@@ -2,12 +2,11 @@ import {createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { ClientRequest } from 'http';
 import type {RootState} from '../store';
 
-
 interface  Client {
     id: number
     firstName: string    
     lastName: string
-    streetAddress: string
+    street: string
     city: string
     country:string
     status:number     
@@ -20,18 +19,20 @@ interface ClientState {
     error: string|null|undefined
     
 }
-
-
    
 const initialState: ClientState = {clients:[], loading:false, error:null}  
 
 export const GetClients = createAsyncThunk(
     'clients/getClients',
-    async (thunkAPI) => {
-        const response = await fetch(`http://127.0.0.1:8000/clients`).then(
-            (data) => data.json
+    async (clients,{rejectWithValue}) => {
+        try{
+        const response = await fetch(`http://127.0.0.1:8000/clients`).then(          
+            (data) => data.json()
         )
-        return response
+          return response
+        } catch (err){
+           return rejectWithValue(err);
+        }
     },
 )
 
@@ -50,12 +51,12 @@ export const ClientSlice  = createSlice({//async thunk
         //}  
     }, 
     extraReducers: (builder) =>{
-        builder.addCase(GetClients.pending,(state,action)=>{
+        builder.addCase(GetClients.pending,(state,action)=>{           
             state.clients = [];
             state.loading= true;
         })
         builder.addCase(GetClients.fulfilled,(state,action)=>{
-            state.clients = [];
+            state.clients = action.payload;
             state.loading= false;
         })
         builder.addCase(GetClients.rejected,(state,action)=>{
