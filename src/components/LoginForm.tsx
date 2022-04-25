@@ -3,17 +3,16 @@ import {connect,ConnectedProps, useSelector} from 'react-redux';
 import { RootState } from '../redux/store';
 import {Login} from '../redux/reducers/LoginReducer';
 import { useAppDispatch } from '../redux/hooks';
-import { BrowserRouter, BrowserRouter as Router, Route, useNavigate} from "react-router-dom";
+import { BrowserRouter as Router, Route, useNavigate} from "react-router-dom";
 
 
 const mapState = (state: RootState) => ({
     Login: state.login,
   })
   
-  const mapDispatch = {
-    GetClients: () => ({ type: 'client/getClients' }),
-  }
-  
+const mapDispatch = {
+GetClients: () => ({ type: 'client/getClients' }),
+}
 
 interface User {
     email? :string;
@@ -26,7 +25,6 @@ interface LoginState{
     loggedin: boolean;
     token: string|undefined;
     error:string|undefined;
-
 }
 
 const connector = connect(mapState, mapDispatch);
@@ -97,8 +95,12 @@ const LoginForm  = (props:Props) => {
 export default connector(LoginForm);
 
 
-
+//TODO: 
+//JEST
+//CSS grid 
 //Replace logged in state with persistant cookie 
 //Login spinner
 //Return login error from backend aand implement snack bar
 //Navigation menu and logout
+//persist loggedin state
+//hook up index page

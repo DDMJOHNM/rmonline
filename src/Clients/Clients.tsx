@@ -85,11 +85,6 @@ const Clients  = (props:Props)=>{
 
 export default connector(Clients);
 
-
-//TODO: 
-//JEST
-//CSS grid 
-
 //Exposes Helper Type Connected Props
 //it can extract types of mapStateToProps and mapDispatchToProps from its first function
 //This means that if you split the connect call into two steps, all of the "props from Redux" 
