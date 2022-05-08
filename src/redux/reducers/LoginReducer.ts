@@ -21,8 +21,26 @@ export const Login = createAsyncThunk(
         const response = await fetch(`http://127.0.0.1:8000/login`,{ mode:'cors' ,method: 'POST',  headers: {
                 'Content-Type': 'application/json'}, body:JSON.stringify(data)}).then(          
             (data) => data.json()
-        )
-          return response
+        )      
+           console.log(document.cookie);
+           document.cookie = response.token;         
+           return response;
+        } catch (err){
+           return rejectWithValue(err);
+        }
+    },
+)
+
+export const getCSRF = createAsyncThunk(
+    'getCSRF',
+    async (payload: object,{rejectWithValue}) => {     
+        const data = payload;
+        try{
+        const response = await fetch(`http://127.0.0.1:8000/sanctum/csrf-cookie`,{ mode:'cors' ,method: 'GET',  headers: {
+                'Content-Type': 'application/json'}, body:JSON.stringify(data)}).then(          
+            (data) => data.json()
+        )      
+           return response;
         } catch (err){
            return rejectWithValue(err);
         }

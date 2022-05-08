@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {connect,ConnectedProps, useSelector} from 'react-redux';
 import { RootState } from '../redux/store';
-import {Login} from '../redux/reducers/LoginReducer';
+import {getCSRF, Login} from '../redux/reducers/LoginReducer';
 import { useAppDispatch } from '../redux/hooks';
 import { BrowserRouter as Router, Route, useNavigate} from "react-router-dom";
 
@@ -62,11 +62,13 @@ const LoginForm  = (props:Props) => {
                 email:{value:string}
                 password:{value:string}                
             };             
-          dispatch(Login({email:target.email.value,password:target.password.value}));  
+            dispatch(getCSRF({}));
+            dispatch(Login({email:target.email.value,password:target.password.value}));
+                  
        }
     }>
         <h1 className="login-form__heading">Rachael Mason Online Login</h1>
-        {props.Login.login.loggedin === true ? "true" :"false"} 
+        {/* {props.Login.login.loggedin === true ? "true" :"false"}  */}
         <div className="login-form__group">
             <label htmlFor="username" className="login-form__label">Email</label>
             <input 

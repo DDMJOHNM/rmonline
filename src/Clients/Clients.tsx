@@ -37,17 +37,17 @@ const Clients  = (props:Props)=>{
   let navigate = useNavigate();
   const dispatch = useAppDispatch();
   const loading : boolean = props.practise.loading;
-  const loggedin : boolean = props.login.login.loggedin;
+  const loggedin : boolean = document.cookie.split(';')[1] ? true: false;
  
 
   useEffect(()=>{
     dispatch(GetClients())
   },[dispatch])
 
-  if( loading ) return <p>Loading</p>; 
+  if( loading ) return <div className='loading'>Loading</div>; 
 
-  if (!loggedin){
-    navigate("/login");
+  if (loggedin === false){
+    // /navigate("/login");
   }
   
  

@@ -19,16 +19,18 @@ interface ClientState {
     error: string|null|undefined
     
 }
-   
+        
 const initialState: ClientState = {clients:[], loading:false, error:null}  
 
 export const GetClients = createAsyncThunk(
     'clients/getClients',
     async (clients,{rejectWithValue}) => {
         try{
-        const response = await fetch(`http://127.0.0.1:8000/clients`).then(          
+        console.log(document.cookie);  
+        const response = await fetch(`http://127.0.0.1:8000/clients`,{ mode:'cors' ,method: 'GET', headers:{'Content-Type': 'application/json', Authorization:'Bearer ' + document.cookie}}).then(          
             (data) => data.json()
-        )
+        )     
+           
           return response
         } catch (err){
            return rejectWithValue(err);
