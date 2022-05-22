@@ -12,10 +12,11 @@ html{
     /* 10(what we want)/16(default) allows zoom in and  */
     /* 1rem = 1px = root font-size 1/10 */
     /*rem not below ie9*/
+    margin:0px;
+    height:100%;
 }
 
 body{
    box-sizing:"border-box";
-  
- 
+   background-color: $color-grey-light-2; 
 }

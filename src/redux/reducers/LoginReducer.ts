@@ -22,7 +22,6 @@ export const Login = createAsyncThunk(
                 'Content-Type': 'application/json'}, body:JSON.stringify(data)}).then(          
             (data) => data.json()
         )      
-           console.log(document.cookie);
            document.cookie = response.token;         
            return response;
         } catch (err){

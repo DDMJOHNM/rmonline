@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import {connect,ConnectedProps, useSelector} from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { RootState } from '../redux/store';
 import {GetClients} from '../redux/reducers/ClientReducer';
 import { useAppDispatch } from '../redux/hooks';
@@ -34,30 +34,23 @@ interface Props extends PropsFromRedux {
 
 const Clients  = (props:Props)=>{
 
-  let navigate = useNavigate();
   const dispatch = useAppDispatch();
   const loading : boolean = props.practise.loading;
-  const loggedin : boolean = document.cookie.split(';')[1] ? true: false;
+  const loggedin : boolean | undefined = document.cookie? true: false;
  
-
   useEffect(()=>{
     dispatch(GetClients())
   },[dispatch])
 
   if( loading ) return <div className='loading'>Loading</div>; 
 
-  if (loggedin === false){
-    // /navigate("/login");
-  }
-  
- 
+   
   return <div className="App">
      
     <table className="client-list">
       <thead>
       <tr>
-        <th className="client-list__th">FirstName</th>
-        <th className="client-list__th">LastName</th>
+        <th className="client-list__th">Name</th>      
         <th className="client-list__th">Address</th>
         <th className="client-list__th">City</th>
         <th className="client-list__th">Country</th>
@@ -67,14 +60,15 @@ const Clients  = (props:Props)=>{
      <tbody>
       {props.practise.clients.map((c,i)=>{
          return (
-            <tr key={i}>
-              <td>{c.firstName}</td>
-              <td>{c.lastName}</td>
-              <td>{c.street}</td>
-              <td>{c.city}</td>
-              <td>{c.country}</td>
-              <td>{c.status}</td>
-            </tr>
+           
+              <tr key={i}>
+                <td><Link to={'/clients/client/'+ c.id}>{c.firstName} {c.lastName}</Link></td>               
+                <td>{c.street}</td>
+                <td>{c.city}</td>
+                <td>{c.country}</td>
+                <td>{c.status}</td>              
+              </tr>
+           
           );
         })}
      </tbody>

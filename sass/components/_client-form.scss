@@ -1,17 +1,17 @@
 @import '../abstracts/variables';
 
-.login-form {
-
+.client-form {
+    
     font-size: $default-font-size;
     margin: 0 auto;
     border:1px solid $color-grey-dark-2;
-    padding:1rem;
+    padding:2rem;
     width:40rem;
     border-radius: 5px;
     box-shadow: 1px 5px 5px rgba($color-black,.1);
     transform:all 3s;
-    background-color: $color-white;
-    
+    background: $color-white;
+
     &__group{
         padding: 1rem;
     }
@@ -22,7 +22,7 @@
         display: inline-block;
     }
 
-    &__email{
+    &__firstName{
         border:1px solid $color-grey-dark-2;
         height:3rem;
         width:20rem;
@@ -30,7 +30,23 @@
         padding:0 5px 0 5px;
     }
 
-    &__password{
+    &__lastName{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
+        padding:0 5px 0 5px;
+    }
+
+    &__street{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
+        padding:0 5px 0 5px;
+    }
+
+    &__city{
         border:1px solid $color-grey-dark-2;
         height:3rem;
         border-radius: 5px;
@@ -38,6 +54,22 @@
         padding:0 5px 0 5px;
     }
     
+    &__country{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
+        padding:0 5px 0 5px;
+    }
+
+    &__status{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
+        padding:0 5px 0 5px;
+    }
+
     &__heading{
         color:$color-tertiary-dark;
         font-size: 2rem;

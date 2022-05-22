@@ -25,12 +25,10 @@ const initialState: ClientState = {clients:[], loading:false, error:null}
 export const GetClients = createAsyncThunk(
     'clients/getClients',
     async (clients,{rejectWithValue}) => {
-        try{
-        console.log(document.cookie);  
+        try{         
         const response = await fetch(`http://127.0.0.1:8000/clients`,{ mode:'cors' ,method: 'GET', headers:{'Content-Type': 'application/json', Authorization:'Bearer ' + document.cookie}}).then(          
             (data) => data.json()
-        )     
-           
+        )             
           return response
         } catch (err){
            return rejectWithValue(err);
