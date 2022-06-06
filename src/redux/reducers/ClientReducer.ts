@@ -26,11 +26,31 @@ export const GetClients = createAsyncThunk(
     'clients/getClients',
     async (clients,{rejectWithValue}) => {
         try{         
-        const response = await fetch(`http://127.0.0.1:8000/clients`,{ mode:'cors' ,method: 'GET', headers:{'Content-Type': 'application/json', Authorization:'Bearer ' + document.cookie}}).then(          
+        const response = await fetch(`http://127.0.0.1:8000/clients`,{ mode:'cors' ,method: 'GET',headers:{'Content-Type': 'application/json', Authorization:'Bearer ' + document.cookie}}).then(          
             (data) => data.json()
         )             
           return response
         } catch (err){
+           return rejectWithValue(err);
+        }
+    },
+)
+
+
+  
+export const Add = createAsyncThunk(
+    'add',
+    async (payload: object,{rejectWithValue})  => {
+       
+        const data = payload;
+        try{         
+            const response = await fetch(`http://127.0.0.1:8000/add`,{ mode:'cors' ,method: 'POST',  headers: {
+                'Content-Type': 'application/json',Authorization:'Bearer ' + document.cookie}, body:JSON.stringify(data)}).then(          
+            (data) => data.json()
+        )                       
+          return response
+        } catch (err){
+            console.log(err + " errorr", data);
            return rejectWithValue(err);
         }
     },

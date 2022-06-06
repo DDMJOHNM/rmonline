@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { connect, ConnectedProps, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { RootState } from "../redux/store";
-import { GetClients } from "../redux/reducers/ClientReducer";
+import { Add } from "../redux/reducers/ClientReducer";
 import { useAppDispatch } from "../redux/hooks";
+import { getCSRF } from '../redux/reducers/LoginReducer';
 
 const mapState = (state: RootState) => ({
   practise: state.practise,
@@ -26,6 +27,9 @@ interface Client {
   city?: string;
   country?: string;
   status?: number;
+  email?: string;
+  contactNumber?: number;
+  age?: number;
 }
 interface Props extends PropsFromRedux {
   client: Client;
@@ -35,6 +39,12 @@ const Client = (props: Props) => {
   const dispatch = useAppDispatch();
   const loading: boolean = props.practise.loading;
   const loggedin: boolean | undefined = document.cookie ? true : false;
+
+  const [client, setClient] = React.useState<Client | null>(null);
+
+  const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    setClient({ [e.currentTarget.name]: e.currentTarget.value });
+  };
 
   useEffect(() => {
     //dispatch(GetClients())
@@ -46,8 +56,37 @@ const Client = (props: Props) => {
     <div className="grid">
       <div className="row">
         <div className="col-1-of-2">
-          <form className="client-form">
-              <h2>Add Client</h2>
+          <form className="client-form" onSubmit={
+              (e:React.SyntheticEvent)=>{
+                  e.preventDefault();
+                  const target = e.target as typeof e.target &{
+                      firstName:{value:string}
+                      lastName:{value:string}        
+                      street:{value: string}      
+                      city:{value: string}  
+                      country:{value: string}  
+                      status:{value: number}
+                      email:{value: string}
+                      contactNumber:{value: number}
+                      age:{value: number}
+
+              };                         
+              dispatch(Add(
+                { 
+                  firstName:target.firstName.value,
+                  lastName:target.lastName.value, 
+                  street:target.street.value,
+                  city:target.street.value,
+                  country:target.country.value,
+                  status:target.status.value,
+                  email:target.email.value,
+                  contactNumber:target.contactNumber.value,
+                  age:target.age.value,
+                 }
+              ));                  
+            }
+           }>
+            <h2>Add Client</h2>
             <div className="client-form__group">
               <label htmlFor="firstName" className="client-form__label">
                 FirstName
@@ -102,6 +141,36 @@ const Client = (props: Props) => {
                 type="text"
                 name="status"
                 className="client-form__status"
+              />
+            </div>            
+            <div className="client-form__group">
+              <label htmlFor="email" className="client-form__label">
+                Email 
+              </label>
+              <input
+                type="text"
+                name="email"
+                className="client-form__email"
+              />
+            </div>
+            <div className="client-form__group">
+              <label htmlFor="contactNumber" className="client-form__label">
+                Contact 
+              </label>
+              <input
+                type="text"
+                name="contactNumber"
+                className="client-form__contactNumber"
+              />
+            </div>
+            <div className="client-form__group">
+              <label htmlFor="Age" className="client-form__label">
+                Age
+              </label>
+              <input
+                type="text"
+                name="age"
+                className="client-form__age"
               />
             </div>
             <input className="client-form__submit" type="submit" value="Save" />

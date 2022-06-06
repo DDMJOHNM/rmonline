@@ -70,6 +70,30 @@
         padding:0 5px 0 5px;
     }
 
+    &__email{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
+        padding:0 5px 0 5px;
+    }
+
+    &__contactNumber{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
+        padding:0 5px 0 5px;
+    }
+
+    &__age{
+        border:1px solid $color-grey-dark-2;
+        height:3rem;
+        border-radius: 5px;
+        width:20rem;
+        padding:0 5px 0 5px;
+    }
+
     &__heading{
         color:$color-tertiary-dark;
         font-size: 2rem;
