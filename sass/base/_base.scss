@@ -20,3 +20,23 @@ body{
    box-sizing:"border-box";
    background-color: $color-grey-light-2; 
 }
+
+.loading{    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:cadetblue;
+    color: aliceblue;
+    font-size: x-large;
+    border: rgba($color-black,.1);
+
+}     
+
+.snack{    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-size: 1em;
+    border: rgba($color-black,.1);
+}     

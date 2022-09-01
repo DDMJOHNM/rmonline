@@ -17,10 +17,11 @@ interface ClientState {
     clients: Client[]     
     loading:boolean   
     error: string|null|undefined
+    success: string|null|undefined
     
 }
         
-const initialState: ClientState = {clients:[], loading:false, error:null}  
+const initialState: ClientState = {clients:[], loading:false, error:null, success:null}  
 
 export const GetClients = createAsyncThunk(
     'clients/getClients',
@@ -46,11 +47,11 @@ export const Add = createAsyncThunk(
         try{         
             const response = await fetch(`http://127.0.0.1:8000/add`,{ mode:'cors' ,method: 'POST',  headers: {
                 'Content-Type': 'application/json',Authorization:'Bearer ' + document.cookie}, body:JSON.stringify(data)}).then(          
-            (data) => data.json()
-        )                       
+            (data) => data.json()           
+        )                     
+    
           return response
-        } catch (err){
-            console.log(err + " errorr", data);
+        } catch (err){             
            return rejectWithValue(err);
         }
     },
@@ -81,7 +82,21 @@ export const ClientSlice  = createSlice({//async thunk
         })
         builder.addCase(GetClients.rejected,(state,action)=>{
             state.error = action.error.message;
+            state.loading= false;            
+        })
+
+        builder.addCase(Add.pending,(state,action)=>{           
+            //state.clients = [];
+            state.loading= true;
+        })
+        builder.addCase(Add.fulfilled,(state,action)=>{
+            state.success = action.payload.success;
+            state.error = action.payload.error
             state.loading= false;
+        })
+        builder.addCase(Add.rejected,(state,action)=>{
+            state.error = action.error.message;
+            state.loading= false;            
         })
     }
     

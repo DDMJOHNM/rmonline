@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { connect, ConnectedProps, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { RootState } from "../redux/store";
-import { Add } from "../redux/reducers/ClientReducer";
+import { Add, ClientSlice } from "../redux/reducers/ClientReducer";
 import { useAppDispatch } from "../redux/hooks";
 import { getCSRF } from '../redux/reducers/LoginReducer';
+import { SnackBar } from '../components/SnackBar';
+import Clients from "./Clients";
+
 
 const mapState = (state: RootState) => ({
   practise: state.practise,
@@ -55,7 +58,7 @@ const Client = (props: Props) => {
   return (
     <div className="grid">
       <div className="row">
-        <div className="col-1-of-2">
+        <div className="col-1-of-2">             
           <form className="client-form" onSubmit={
               (e:React.SyntheticEvent)=>{
                   e.preventDefault();
@@ -86,6 +89,13 @@ const Client = (props: Props) => {
               ));                  
             }
            }>
+             {props.practise.error &&
+              <SnackBar color={"red"} message={"Error adding client"} />
+              }          
+              
+              {props.practise.success &&
+              <SnackBar color={"green"} message={props.practise.success} />
+              }    
             <h2>Add Client</h2>
             <div className="client-form__group">
               <label htmlFor="firstName" className="client-form__label">

@@ -47,50 +47,51 @@ const LoginForm  = (props:Props) => {
     const loggedin : boolean | undefined = props.Login.login.loggedin
     let navigate = useNavigate();
 
-    if(loading) return <p>Loading</p>;
+    if(loading) return <div className='loading'>Loading</div>;
 
     if (loggedin) {
         navigate("/clients");
     }
  
     return (
-        
-    <form className="login-form" onSubmit={
-        (e:React.SyntheticEvent)=>{
-            e.preventDefault();
-            const target = e.target as typeof e.target &{
-                email:{value:string}
-                password:{value:string}                
-            };             
-            dispatch(getCSRF({}));
-            dispatch(Login({email:target.email.value,password:target.password.value}));
-                  
-       }
-    }>
-        <h1 className="login-form__heading">Rachael Mason Online Login</h1>
-        {/* {props.Login.login.loggedin === true ? "true" :"false"}  */}
-        <div className="login-form__group">
-            <label htmlFor="username" className="login-form__label">Email</label>
-            <input 
-                type="email"
-                name="email"
-                className="login-form__email" 
-                value={user? user.email : "" } 
-                onChange={onChange}
-                />
-        </div>   
-        <div className="login-form__group">
-            <label htmlFor="password" className="login-form__label">Password</label>
-            <input 
-                type="password" 
-                name="password"
-                className="login-form__password" 
-                value={user? user.password : "" } 
-                onChange={onChange}
-                />
-        </div>   
-        <input type="submit" className="login-form__submit" value="Login" />    
-    </form> );
+    <div className='container'>        
+        <form className="login-form" onSubmit={
+            (e:React.SyntheticEvent)=>{
+                e.preventDefault();
+                const target = e.target as typeof e.target &{
+                    email:{value:string}
+                    password:{value:string}                
+                };             
+                dispatch(getCSRF({}));
+                dispatch(Login({email:target.email.value,password:target.password.value}));
+                    
+        }
+        }>
+            <h1 className="login-form__heading">Rachael Mason Online Login</h1>
+            {/* {props.Login.login.loggedin === true ? "true" :"false"}  */}
+            <div className="login-form__group">
+                <label htmlFor="username" className="login-form__label">Email</label>
+                <input 
+                    type="email"
+                    name="email"
+                    className="login-form__email" 
+                    value={user? user.email : "" } 
+                    onChange={onChange}
+                    />
+            </div>   
+            <div className="login-form__group">
+                <label htmlFor="password" className="login-form__label">Password</label>
+                <input 
+                    type="password" 
+                    name="password"
+                    className="login-form__password" 
+                    value={user? user.password : "" } 
+                    onChange={onChange}
+                    />
+            </div>   
+            <input type="submit" className="login-form__submit" value="Login" />    
+        </form> 
+    </div>);
 
 }
   
