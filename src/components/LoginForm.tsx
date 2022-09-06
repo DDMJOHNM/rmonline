@@ -4,6 +4,7 @@ import { RootState } from '../redux/store';
 import {getCSRF, Login} from '../redux/reducers/LoginReducer';
 import { useAppDispatch } from '../redux/hooks';
 import { BrowserRouter as Router, Route, useNavigate} from "react-router-dom";
+import {SnackBar} from "./SnackBar";
 
 
 const mapState = (state: RootState) => ({
@@ -47,7 +48,7 @@ const LoginForm  = (props:Props) => {
     const loggedin : boolean | undefined = props.Login.login.loggedin
     let navigate = useNavigate();
 
-    if(loading) return <div className='loading'>Loading</div>;
+    if(loading) return <SnackBar message={"Loading"} color={"grey"}/>;
 
     if (loggedin) {
         navigate("/clients");

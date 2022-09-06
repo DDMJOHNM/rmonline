@@ -53,11 +53,18 @@ const Client = (props: Props) => {
     //dispatch(GetClients())
   }, [dispatch]);
 
-  if (loading) return <div className="loading">Loading</div>;
+  if (loading) return <SnackBar message={"Loading"} color={"grey"}/>;
 
   return (
     <div className="grid">
-      <div className="row">
+        {props.practise.error &&
+            <SnackBar color={"red"} message={"Error adding client"} />
+        }
+
+        {props.practise.success &&
+            <SnackBar color={"green"} message={props.practise.success} />
+        }
+        <div className="row">
         <div className="col-1-of-2">             
           <form className="client-form" onSubmit={
               (e:React.SyntheticEvent)=>{
@@ -89,13 +96,6 @@ const Client = (props: Props) => {
               ));                  
             }
            }>
-             {props.practise.error &&
-              <SnackBar color={"red"} message={"Error adding client"} />
-              }          
-              
-              {props.practise.success &&
-              <SnackBar color={"green"} message={props.practise.success} />
-              }    
             <h2>Add Client</h2>
             <div className="client-form__group">
               <label htmlFor="firstName" className="client-form__label">

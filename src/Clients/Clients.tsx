@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { RootState } from '../redux/store';
 import {GetClients} from '../redux/reducers/ClientReducer';
 import { useAppDispatch } from '../redux/hooks';
+import {SnackBar} from "../components/SnackBar";
 
 const mapState = (state: RootState) => ({
   practise: state.practise,
@@ -42,7 +43,7 @@ const Clients  = (props:Props)=>{
     dispatch(GetClients())
   },[dispatch])
 
-  if( loading ) return <div className='loading'>Loading</div>; 
+  if( loading ) return <SnackBar message={"Loading"} color={"grey"}/>;
 
    
   return <div className="App">

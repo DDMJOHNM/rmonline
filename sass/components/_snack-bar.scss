@@ -1,0 +1,65 @@
+@import '../abstracts/variables';
+
+.snack-bar{
+   position:absolute;
+   top:0;
+   left:20%;
+   right:20%;
+   border-radius: 5px;
+   color: #d8e0e5;
+   text-align: center;
+   padding: 10px 5px 10px 5px;
+   font-size: 20px;
+   max-width:600px;
+   margin: 0 auto;
+   border:1px solid $color-grey-dark-2;
+   box-shadow: 1px 5px 5px rgba($color-black,.1);
+   animation: fadeIn 1s;
+
+   &__spinner {
+      animation: rotate 2s linear infinite;
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      margin: -15px 0 0 -25px;
+      width: 30px;
+      height: 30px;
+
+      & .path {
+         stroke: hsl(210, 70, 75);
+         stroke-linecap: round;
+         animation: dash 1.5s ease-in-out infinite;
+      }
+
+   }
+
+
+}
+
+
+@keyframes rotate {
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes dash {
+   0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+   }
+   50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+   }
+   100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+   }
+}
+
+@keyframes fadeIn {
+   0% { opacity: 0; }
+   100% { opacity: 1; }
+}
